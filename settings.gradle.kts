@@ -9,3 +9,7 @@
 
 rootProject.name = "banana"
 include("app", "list", "utilities")
+
+// Other sub-projects
+include("positionallist")
+include("map")
