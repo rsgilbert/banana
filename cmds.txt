@@ -1,0 +1,14 @@
+// View structure of multi-project build
+gradle projects
+
+// You can -q for quiet flag
+gradle -q projects
+
+// Too see a list of tasks of a project in subproject app
+gradle :app:tasks
+
+// Run the application
+gradle run
+// Or
+gradle :app:run
+
