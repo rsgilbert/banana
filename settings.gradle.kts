@@ -8,8 +8,7 @@
  */
 
 rootProject.name = "banana"
-include("list", "utilities")
 
-// Other sub-projects
+// sub-projects
 include("positionallist")
 include("map")
