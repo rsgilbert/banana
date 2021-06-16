@@ -8,7 +8,7 @@
  */
 
 rootProject.name = "banana"
-include("app", "list", "utilities")
+include("list", "utilities")
 
 // Other sub-projects
 include("positionallist")
