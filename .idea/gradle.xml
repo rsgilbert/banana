@@ -13,10 +13,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/list" />
             <option value="$PROJECT_DIR$/map" />
             <option value="$PROJECT_DIR$/positionallist" />
-            <option value="$PROJECT_DIR$/utilities" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

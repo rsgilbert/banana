@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for the PositionalList interface.
  * Methods to test are:
- * addFirst, addLast, addBefore, addAfter
+ * addBefore, addAfter
  * All methods in the interface are:
  * size, isEmpty, first, last, after, addFirst, addLast, addBefore, addAfter, set, remove
  *
  */
-@Tag("add")
-public class PositionalListAddTest {
+@DisplayName("addFirst and addLast tests")
+public class PositionalList_AddFirstAddLast_Test {
     PositionalList<Integer> list;
 
     @BeforeEach
@@ -23,6 +23,7 @@ public class PositionalListAddTest {
         list = new LinkedPositionalList<>();
     }
 
+    // -- addFirst tests --
     @DisplayName("addFirst increases size of empty list from zero to one")
     @Test
     void addFirstIncreasesSizeTest() {
@@ -44,4 +45,36 @@ public class PositionalListAddTest {
         Position<Integer> p = list.addFirst(item);
         assertSame(p.getElement(), item);
     }
+
+    // -- end addFirst --
+
+    // -- addLast tests --
+    @DisplayName("add last increases size")
+    @Test
+    void addLastIncreasesSize() {
+        list.addLast(2);
+        assertEquals(list.size(), 1);
+    }
+
+    @DisplayName("add last returned position has correct element")
+    @Test
+    void addLastPositionHasCorrectElement() {
+        int item = 4;
+        var p = list.addLast(4);
+        assertSame(item, p.getElement());
+    }
+
+    @DisplayName("add last puts to last position")
+    @Test
+    void addLastPutsToLastPosition() {
+        list.addLast(1);
+        list.addLast(5);
+        var last = list.addLast(2);
+        assertSame(list.last(), last);
+    }
+
+    // -- end addLast --
+
+
+
 }

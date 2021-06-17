@@ -132,6 +132,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Returns the number of elements in the linked list
      * @return size of linked list
      */
+    @Override
     public int size() {
         return size;
     }
@@ -140,6 +141,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Tests whether the linked list is empty
      * @return whether the linked list is empty
      */
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
@@ -148,6 +150,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Returns the first position in the linked list or null if empty
      * @return first position in linked list
      */
+    @Override
     public Position<E> first() {
         return position(header.getNext());
     }
@@ -156,6 +159,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Returns the last position in the linked list or null if empty
      * @return last position in linked list
      */
+    @Override
     public Position<E> last() {
         return position(trailer.getPrev());
     }
@@ -166,6 +170,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @return position immediately before p
      * @throws IllegalArgumentException
      */
+    @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
         return position(node.getPrev());
@@ -177,6 +182,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @return
      * @throws IllegalArgumentException
      */
+    @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
         return position(node.getNext());
@@ -211,6 +217,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param e
      * @return Position of e
      */
+    @Override
     public Position<E> addFirst(E e) {
         return addBetween(e, header, header.getNext());
     }
@@ -220,6 +227,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param e
      * @return Position of e
      */
+    @Override
     public Position<E> addLast(E e) {
         return addBetween(e, trailer.getPrev(), trailer);
     }
@@ -230,6 +238,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param e
      * @return position of e
      */
+    @Override
     public Position<E> addBefore(Position<E> p, E e) {
         Node<E> node = validate(p);
         return addBetween(e, node.getPrev(), node);
@@ -241,6 +250,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param e
      * @return
      */
+    @Override
     public Position<E> addAfter(Position<E> p, E e) {
         Node<E> node = validate(p);
         return addBetween(e, node, node.getNext());
@@ -252,6 +262,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param e
      * @return replaced element
      */
+    @Override
     public E set(Position<E> p, E e) {
         Node<E> node = validate(p);
         E replaced = node.getElement();
@@ -264,6 +275,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param p
      * @return element at removed position
      */
+    @Override
     public E remove(Position<E> p) {
         Node<E> node = validate(p);
         Node<E> prevNode = node.getPrev();
@@ -325,6 +337,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Returns an iterable representation of the list's positions
      * @return new instance of PositionIterable
      */
+    @Override
     public Iterable<Position<E>> positions() {
         // creates a new instance of the new PositionIterable class
         return new PositionIterable();

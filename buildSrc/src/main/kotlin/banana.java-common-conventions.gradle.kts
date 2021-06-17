@@ -23,6 +23,14 @@ dependencies {
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+
+    // Add assertj library for extra testing
+    // see: https://joel-costigliola.github.io/assertj/assertj-core-quick-start.html
+    testImplementation("org.assertj:assertj-core:3.11.1")
+
+    // hamcrest for extra testing
+    // see: http://hamcrest.org/JavaHamcrest/distributables
+    testImplementation("org.hamcrest:hamcrest:2.2")
 }
 
 tasks.test {

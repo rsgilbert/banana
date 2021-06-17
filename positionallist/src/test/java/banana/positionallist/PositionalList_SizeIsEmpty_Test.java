@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * size, isEmpty, first, last, after, addFirst, addLast, addBefore, addAfter, set, remove
  *
  */
-@Tag("size-isEmpty")
-public class PositionalListSizeIsEmptyTest {
+@DisplayName("size and isEmpty tests")
+public class PositionalList_SizeIsEmpty_Test {
     PositionalList<Integer> list;
 
     @BeforeEach
