@@ -1,47 +1,35 @@
 package banana.positionallist;
 
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Implementation of a positional list stored as a doubly linked list
- *
- * Performance:
- * ---------------------------------------------------------------
- * | Method                          | Running Time              |
- * ---------------------------------------------------------------
- * | size()                          | O(1)                      |
- * | isEmpty()                       | O(1)                      |
- * | first(), last()                 | O(1)                      |
- * | before(p), after(p)             | O(1)                      |
- * | addFirst(e), addLast(e)         | O(1)                      |
- * | addBefore(p, e), addAfter(p, e) | O(1)                      |
- * | set(p, e)                       | O(1)                      |
- * | remove(p)                       | O(1)                      |
- * ---------------------------------------------------------------
+ * Implementation of a {@link banana.positionallist.PositionalList} stored as a doubly linked list
+ * @author Gilboot
  *
  * @param <E> element type
  */
 public class LinkedPositionalList<E> implements PositionalList<E> {
     // -------------- nested Node class --------------
-    private static class Node<E> implements Position<E> {
+    class Node<E> implements Position<E> {
         /**
          * Reference to the element stored at this node
          */
-        private E element;
+        E element;
 
         /**
          * Reference to the previous node in the list
          */
-        private Node<E> prev;
+        Node<E> prev;
 
         /**
          * Reference to the subsequent node in the list
          */
-        private Node<E> next;
+        Node<E> next;
 
-        public Node(E e, Node<E> p, Node<E> n) {
+        Node(E e, Node<E> p, Node<E> n) {
             element = e;
             prev = p;
             next = n;
@@ -52,24 +40,24 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
              * Convention for defunct node
              */
             if(next == null) {
-                throw new IllegalStateException("Position is no longer valid");
+                throw new InvalidPosition("Position is no longer valid");
             }
             return element;
         }
 
-        public Node<E> getPrev() {
+        Node<E> getPrev() {
             return prev;
         }
-        public Node<E> getNext() {
+        Node<E> getNext() {
             return next;
         }
-        public void setElement(E e) {
+        void setElement(E e) {
             element = e;
         }
-        public void setPrev(Node<E> p) {
+        void setPrev(Node<E> p) {
             prev = p;
         }
-        public void setNext(Node<E> n) {
+        void setNext(Node<E> n) {
             next = n;
         }
     }
@@ -129,8 +117,14 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     // ---------------- public accessor methods -----------------------
 
     /**
-     * Returns the number of elements in the linked list
+     * <p>
+     * Returns the number of elements in the linked list.
+     * <a href="https://stackoverflow.com">Stackoverflow</a> has nice answers.
+     * </p>
+     *
      * @return size of linked list
+     * @see <a href="https://stackoverflow.com">Stack</a>
+     * @since 1.0
      */
     @Override
     public int size() {
@@ -177,7 +171,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
 
     /**
-     * Returns position immediately after Postion p or null if p is last
+     * Returns position immediately after Position p or null if p is last
      * @param p
      * @return
      * @throws IllegalArgumentException
@@ -273,9 +267,10 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     /**
      * Removes element at position p from linked list and returns the element
      * @param p
-     * @return element at removed position
+     * @return element at removed {@link banana.positionallist.Position}
+     * @see <a href="https://stackoverflow.com">Stackoverflow</a>
      */
-    @Override
+     @Override
     public E remove(Position<E> p) {
         Node<E> node = validate(p);
         Node<E> prevNode = node.getPrev();
@@ -327,6 +322,9 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
     // ---------------------- end of nested PositionIterator class -------------------
 
+    /**
+     *
+     */
     // --------------------- nested PositionIterable class --------------------------
     private class PositionIterable implements Iterable<Position<E>> {
         public Iterator<Position<E>> iterator() { return new PositionIterator(); }
@@ -354,6 +352,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         public void remove() {
             positionIterator.remove();
         }
+
     }
 
     // ------------- end of nested ElementIterator class ---------

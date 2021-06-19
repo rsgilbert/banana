@@ -12,3 +12,5 @@ gradle run
 // Or
 gradle :app:run
 
+// Generate javadoc
+(base) ssenyonjo@ssenyonjo-pc:~/Projects/banana/positionallist/src/main/java$ javadoc -d ../myDoc banana.positionallist
