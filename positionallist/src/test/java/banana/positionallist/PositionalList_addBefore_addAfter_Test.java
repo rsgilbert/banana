@@ -31,6 +31,19 @@ public class PositionalList_addBefore_addAfter_Test {
         System.out.println("Element is " + el);
     }
 
+    @DisplayName("Greg test")
+    @Test
+    void gregTest() {
+        var pl0 = new LinkedPositionalList<Integer>();
+        pl0.addFirst(101);
+        var p0 = pl0.first();
+        var pl1 = new LinkedPositionalList<Integer>();
+        pl0.addAfter(p0, 102);
+        pl1.addAfter(p0, 201);
+        System.out.println("PL 0: " + pl0.positions());
+        System.out.println("PL 1: " + pl1.positions());
+    }
+
     // -- addBefore --
     @DisplayName("addBefore with null position throws error")
     @Test

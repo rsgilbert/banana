@@ -345,6 +345,18 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         public Iterator<Position<E>> iterator() {
             return new PositionIterator();
         }
+
+        /**
+         * Produces a string made by concatenating elements in all positions separated by a space.
+         * @return a string made by concatenating elements in all positions separated by a space
+         */
+        @Override
+        public String toString() {
+            StringBuilder result = new StringBuilder();
+            for (Position<E> p : this)
+                result.append(" ").append(p.getElement());
+            return result.toString();
+        }
     }
     // -------------------- end of nested PositionIterable class --------------------
 
