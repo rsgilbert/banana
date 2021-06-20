@@ -118,7 +118,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     private int size = 0;
 
     /**
-     * Constructs a new empty list
+     * Constructs a new empty list.
      */
     public LinkedPositionalList() {
         // create header
@@ -132,23 +132,30 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     // ----- private utilities -----------
 
     /**
-     * Validates the position and produces it as a node
+     * Validates {@link Position} p and produces it as a node if it is valid.
+     * <p>An invalid {@link Position} is one which has been previously removed from the list.
      *
-     * @param p
-     * @return node for given position
-     * @throws IllegalArgumentException
+     * @param p {@link Position} to be validated
+     * @return node at {@link Position} p
+     * @throws IllegalArgumentException if {@link Position} p is not a {@link Node}.
+     * @throws InvalidPosition if {@link Position} p is invalid.
      */
-    private Node<E> validate(Position<E> p) throws IllegalArgumentException {
-        if (!(p instanceof Node)) throw new IllegalArgumentException("Invalid p");
+    private Node<E> validate(Position<E> p) {
+        if (!(p instanceof Node)) throw new IllegalArgumentException("p must be a node");
         // safe cast
         Node<E> node = (Node<E>) p;
         // convention for defunct node
         if (node.getNext() == null) {
-            throw new IllegalArgumentException("p is no longer in the list");
+            throw new InvalidPosition("p is invalid as it was removed from this list");
         }
         return node;
     }
 
+    /**
+     * Produces the {@link Position} of the given {@link Node} node or null if node is a sentinel node.
+     * @param node {@link Node} whose {@link Position} is to be produced.
+     * @return {@link Position} of the given {@link Node} node or null if node is a sentinel node.
+     */
     private Position<E> position(Node<E> node) {
         if (node == header || node == trailer) {
             // do not expose user to the sentinels
@@ -162,14 +169,9 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     // ---------------- public accessor methods -----------------------
 
     /**
-     * <p>
-     * Produces the number of elements in the linked list.
-     * <a href="https://stackoverflow.com">Stackoverflow</a> has nice answers.
-     * </p>
+     * Produces the number of positions in the list.
      *
-     * @return size of linked list
-     * @see <a href="https://stackoverflow.com">Stack</a>
-     * @since 1.0
+     * @return number of positions in the linked list
      */
     @Override
     public int size() {
