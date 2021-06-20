@@ -52,7 +52,6 @@ public interface PositionalList<E> {
      * Produces the {@link Position} immediately after {@link Position} p or null if p is the last {@link Position} in the list.
      *
      * @param p {@link Position} whose after-position is to be produced.
-     * @param p {@link Position} whose after-position is to be produced.
      * @return {@link Position} immediately after {@link Position} p.
      * @throws InvalidPosition if {@link Position} p does not belong to this list.
      */
@@ -107,8 +106,8 @@ public interface PositionalList<E> {
     /**
      * Removes {@link Position} p from the list and produces the element stored at {@link Position} p.
      * <p> Once {@link Position} p has been removed from the list, p is invalidated to make it unusable in other operations/methods on the list.
-     *
-     * @param p {@link Position} to be removed from the list.
+     * @return element at the position that has been removed
+     * @param p {@link Position} to be removed from the list
      * @throws InvalidPosition if {@link Position} p does not belong to this list.
      */
     E remove(Position<E> p);
