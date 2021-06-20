@@ -13,7 +13,7 @@ package banana.positionallist;
  */
 public interface Position<E> {
     /**
-     * Returns the element stored at this position.
+     * Produces the element stored at this position.
      *
      * @return the stored element.
      * @throws InvalidPosition if the {@link banana.positionallist.Position} is no longer valid.

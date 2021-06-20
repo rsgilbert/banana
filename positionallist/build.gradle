@@ -2,3 +2,5 @@ plugins {
     id 'banana.java-library-conventions'
 }
 
+group 'org.banana'
+version '1.0-SNAPSHOT'

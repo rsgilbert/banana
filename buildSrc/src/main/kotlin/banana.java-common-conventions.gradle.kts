@@ -3,9 +3,12 @@
  */
 
 plugins {
-    // Apply the java Plugin to add support for Java.
-    java
+    // Java library
+    // https://www.jetbrains.com/help/idea/add-a-gradle-library-to-the-maven-repository.html#edit_build_script
+    `java-library`
+    `maven-publish`
 }
+
 
 repositories {
     // Use Maven Central for resolving dependencies.
