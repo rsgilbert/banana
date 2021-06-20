@@ -19,6 +19,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * Concrete implementation of a {@code Node} that holds the element as well as
      * references to the next and previous {@code Node}s.
      * <p>The Node class implements the {@link Position} interface.
+     *
      * @param <E> type of element stored by the node.
      */
     private class Node<E> implements Position<E> {
@@ -41,6 +42,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         /**
          * Constructs a new node storing element e and having previous node p and
          * next node n.
+         *
          * @param e element that will be stored at this node
          * @param p previous node in the list
          * @param n next node in the list
@@ -53,6 +55,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces the element stored at this node.
+         *
          * @return element stored at this node.
          * @throws InvalidPosition if the {@link Position} is no longer valid.
          */
@@ -67,6 +70,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces previous node
+         *
          * @return previous node
          */
         Node<E> getPrev() {
@@ -75,6 +79,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces next node
+         *
          * @return next node
          */
         Node<E> getNext() {
@@ -83,6 +88,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Sets/replaces the element at this node with element e.
+         *
          * @param e new element to be stored at this node.
          */
         void setElement(E e) {
@@ -91,6 +97,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Sets/replaces previous node with node p.
+         *
          * @param p new previous node.
          */
         void setPrev(Node<E> p) {
@@ -99,6 +106,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Sets/replaces next node with node n.
+         *
          * @param n new next node.
          */
         void setNext(Node<E> n) {
@@ -138,7 +146,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      * @param p {@link Position} to be validated
      * @return node at {@link Position} p
      * @throws IllegalArgumentException if {@link Position} p is not a {@link Node}.
-     * @throws InvalidPosition if {@link Position} p is invalid.
+     * @throws InvalidPosition          if {@link Position} p is invalid.
      */
     private Node<E> validate(Position<E> p) {
         if (!(p instanceof Node)) throw new IllegalArgumentException("p must be a node");
@@ -153,6 +161,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     /**
      * Produces the {@link Position} of the given {@link Node} node or null if node is a sentinel node.
+     *
      * @param node {@link Node} whose {@link Position} is to be produced.
      * @return {@link Position} of the given {@link Node} node or null if node is a sentinel node.
      */
@@ -168,66 +177,32 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     // ---------------- public accessor methods -----------------------
 
-    /**
-     * Produces the number of positions in the list.
-     *
-     * @return number of positions in the linked list
-     */
     @Override
     public int size() {
         return size;
     }
 
-    /**
-     * Tests whether the linked list is empty
-     *
-     * @return whether the linked list is empty
-     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /**
-     * Produces the first position in the linked list or null if empty
-     *
-     * @return first position in linked list
-     */
     @Override
     public Position<E> first() {
         return position(header.getNext());
     }
 
-    /**
-     * Produces the last position in the linked list or null if empty
-     *
-     * @return last position in linked list
-     */
     @Override
     public Position<E> last() {
         return position(trailer.getPrev());
     }
 
-    /**
-     * Produces the position immediately before Position p or null if p is first
-     *
-     * @param p
-     * @return position immediately before p
-     * @throws IllegalArgumentException
-     */
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
         return position(node.getPrev());
     }
 
-    /**
-     * Produces position immediately after Position p or null if p is last
-     *
-     * @param p
-     * @return
-     * @throws IllegalArgumentException
-     */
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
@@ -239,12 +214,12 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     // ----------- private utilities -------------------------------
 
     /**
-     * Addes element e to the linked list between the given nodes
+     * Adds element e to the list between the predecessor node and the successor node and returns the new {@link Position} of the element added.
      *
-     * @param e
-     * @param predecessor
-     * @param successor
-     * @return position of element e
+     * @param e           element to be added
+     * @param predecessor {@link Position} that should come before the element's new {@link Position}
+     * @param successor   {@link Position} that should come after the element's new {@link Position}
+     * @return new {@link Position} of element e
      */
     private Position<E> addBetween(E e, Node<E> predecessor, Node<E> successor) {
         // Create and link a new node
@@ -259,61 +234,28 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     // ------------ public update methods --------------------------
 
-    /**
-     * Inserts element e at the front of the linked list and produces its new Position
-     *
-     * @param e
-     * @return Position of e
-     */
     @Override
     public Position<E> addFirst(E e) {
         return addBetween(e, header, header.getNext());
     }
 
-    /**
-     * Inserts element e at the back of the linked list and produces its new Position
-     *
-     * @param e
-     * @return Position of e
-     */
     @Override
     public Position<E> addLast(E e) {
         return addBetween(e, trailer.getPrev(), trailer);
     }
 
-    /**
-     * Inserts element e immediately before position p and produces position of e
-     *
-     * @param p
-     * @param e
-     * @return position of e
-     */
     @Override
     public Position<E> addBefore(Position<E> p, E e) {
         Node<E> node = validate(p);
         return addBetween(e, node.getPrev(), node);
     }
 
-    /**
-     * Inserts element e immediately after e and produces position of e
-     *
-     * @param p
-     * @param e
-     * @return
-     */
     @Override
     public Position<E> addAfter(Position<E> p, E e) {
         Node<E> node = validate(p);
         return addBetween(e, node, node.getNext());
     }
 
-    /**
-     * Sets element at position p and produces replaced element
-     *
-     * @param p
-     * @param e
-     * @return replaced element
-     */
     @Override
     public E set(Position<E> p, E e) {
         Node<E> node = validate(p);
@@ -322,13 +264,6 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         return replaced;
     }
 
-    /**
-     * Removes element at position p from linked list and produces the element
-     *
-     * @param p
-     * @return element at removed {@link banana.positionallist.Position}
-     * @see <a href="https://stackoverflow.com">Stackoverflow</a>
-     */
     @Override
     public E remove(Position<E> p) {
         Node<E> node = validate(p);
@@ -348,6 +283,10 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
 
     // ---------------- nested PositionIterator class ---------------------------
+
+    /**
+     * {@link Iterator} class that provides an iterator over the list's {@link Position}s.
+     */
     private class PositionIterator implements Iterator<Position<E>> {
         // position of the next element to report
         private Position<E> cursor = first();
@@ -355,17 +294,22 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         private Position<E> recent = null;
 
         /**
-         * Tests whether the iterator has a next object
+         * Produces {@code true} if the iterator has a next {@link Position}.
+         *
+         * @return {@code true} if the iterator has a next {@link Position}
          */
         public boolean hasNext() {
             return (cursor != null);
         }
 
         /**
-         * Produces the next position in the iterator
+         * Produces the next position in the iterator.
+         *
+         * @return next {@link Position} in the iterator
+         * @throws NoSuchElementException if the iterator has no more {@link Position}s
          */
-        public Position<E> next() throws NoSuchElementException {
-            if (cursor == null) throw new NoSuchElementException("Nothing left");
+        public Position<E> next() {
+            if (cursor == null) throw new NoSuchElementException("No more positions");
             // element at this position might later be removed
             recent = cursor;
             cursor = after(cursor);
@@ -373,10 +317,10 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
 
         /**
-         * Remove the element produced by the most recent call to next
+         * Removes the {@link Position} produced by the most recent call to {@link #next()}
          */
         public void remove() throws IllegalStateException {
-            if (recent == null) throw new IllegalStateException("Nothing to remove");
+            if (recent == null) throw new IllegalStateException("No position to remove");
             // remove from outer list
             LinkedPositionalList.this.remove(recent);
             // Do not allow remove again until next is called
@@ -385,22 +329,26 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
     // ---------------------- end of nested PositionIterator class -------------------
 
-    /**
-     *
-     */
+
     // --------------------- nested PositionIterable class --------------------------
+
+    /**
+     * {@link Iterable} class that provides an iterable of {@link Position}s.
+     */
     private class PositionIterable implements Iterable<Position<E>> {
+        /**
+         * Produces an iterator of {@link Position}s.
+         *
+         * @return an iterator of {@link Position}s
+         */
+        @Override
         public Iterator<Position<E>> iterator() {
             return new PositionIterator();
         }
     }
     // -------------------- end of nested PositionIterable class --------------------
 
-    /**
-     * Produces an iterable representation of the list's positions
-     *
-     * @return new instance of PositionIterable
-     */
+
     @Override
     public Iterable<Position<E>> positions() {
         // creates a new instance of the new PositionIterable class
@@ -410,19 +358,31 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     //  ---------------- nested ElementIterator class ----------
 
     /**
-     * This class adapts the iteration produced by positions to return elements
+     * Adapts the iteration produced by {@link #positions()} to return elements instead.
      */
     private class ElementIterator implements Iterator<E> {
         Iterator<Position<E>> positionIterator = new PositionIterator();
 
+        /**
+         * Produces true if the iterator has a next element.
+         * @return true if the iterator has a next element
+         */
         public boolean hasNext() {
             return positionIterator.hasNext();
         }
 
+        /**
+         * Produces the next element in the iterator.
+         * @return the next element in the iterator
+         * @throws NoSuchElementException if there is no more elements.
+         */
         public E next() {
             return positionIterator.next().getElement();
         }
 
+        /**
+         * Removes the position of the element produced by the most recent call to {@link #next()} from the list.
+         */
         public void remove() {
             positionIterator.remove();
         }
