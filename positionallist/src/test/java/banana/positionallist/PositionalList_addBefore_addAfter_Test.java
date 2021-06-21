@@ -41,7 +41,9 @@ public class PositionalList_addBefore_addAfter_Test {
         pl0.addAfter(p0, 102);
         pl1.addAfter(p0, 201);
         System.out.println("PL 0: " + pl0.positions());
+        System.out.println("PL0 size: " + pl0.size());
         System.out.println("PL 1: " + pl1.positions());
+        System.out.println("PL1 size: " + pl1.size());
     }
 
     // -- addBefore --

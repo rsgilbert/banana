@@ -74,7 +74,7 @@ public interface PositionalList<E> {
     Position<E> addLast(E e);
 
     /**
-     * Inserts element e immediately after {@link Position} p and produces {@link Position} of e.
+     * Inserts element e immediately before {@link Position} p and produces {@link Position} of e.
      *
      * @param p {@link Position} before which element e will be inserted.
      * @param e element to be inserted.
