@@ -15,6 +15,8 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/map" />
             <option value="$PROJECT_DIR$/positionallist" />
+            <option value="$PROJECT_DIR$/searchtree" />
+            <option value="$PROJECT_DIR$/tree" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

@@ -22,7 +22,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
      *
      * @param <E> type of element stored by the node.
      */
-    private class Node<E> implements Position<E> {
+     class Node<E> implements Position<E> {
         /**
          * Element stored at this node
          */
@@ -348,6 +348,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces a string made by concatenating elements in all positions separated by a space.
+         *
          * @return a string made by concatenating elements in all positions separated by a space
          */
         @Override
@@ -377,6 +378,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces true if the iterator has a next element.
+         *
          * @return true if the iterator has a next element
          */
         public boolean hasNext() {
@@ -385,6 +387,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         /**
          * Produces the next element in the iterator.
+         *
          * @return the next element in the iterator
          * @throws NoSuchElementException if there is no more elements.
          */

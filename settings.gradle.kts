@@ -12,3 +12,5 @@ rootProject.name = "banana"
 // sub-projects
 include("positionallist")
 include("map")
+include("searchtree")
+include("tree")

@@ -83,6 +83,7 @@ public class PositionalList_addBefore_addAfter_Test {
         var p = list.addAfter(first, el);
         assertSame(list.last(), p);
         assertSame(list.after(first), p);
+
     }
 
     @DisplayName("addAfter returned position has correct element")
